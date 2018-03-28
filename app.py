@@ -22,7 +22,7 @@ def plot():
                        ticker = request.form['ticker'])
     #output_file("./templates/line.html")
     p = figure(plot_width=400, plot_height=400,x_axis_type = "datetime")
-    p.line(data.date,data.open,line_width = 2,legend = request.form['ticker'],color = 'green')
+    p.multi_line([[data.date],[data.date]],[[data.close],[data.open]],color = ['firebrick','navy'],alpha = [0.8,0.3],line_width = 4)
     script, div = components(p)
     return render_template('line.html',div=div,script=script)
 
