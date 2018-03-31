@@ -20,9 +20,8 @@ def about():
 def plot():
     data = quandl.get_table('WIKI/PRICES',
                        ticker = request.form['ticker'])
-    #output_file("./templates/line.html")
     p = figure(plot_width=400, plot_height=400,x_axis_type = "datetime")
-    p.multi_line([data.date.tolist(),data.date.tolist(),data.date.tolist(),data.date.tolist()],[request.form['close'],request.form['adj_close'],request.form['open'],request.form['adj_open']],color = ['yellow','red','blue','green'],alpha = [0.8,0.3],line_width = 1)
+    p.line(data.date,data.open,line_width = 2,legend = request.form['ticker'],color = 'green')
     
     script, div = components(p)
     return render_template('line.html',div=div,script=script)
